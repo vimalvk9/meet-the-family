@@ -1,0 +1,11 @@
+GET_RELATIONSHIP Pjali Daughter
+GET_RELATIONSHIP King Daughter
+GET_RELATIONSHIP Queen Daughter
+GET_RELATIONSHIP Amba Daughter
+GET_RELATIONSHIP Chit Daughter
+GET_RELATIONSHIP Yodhan Daughter
+GET_RELATIONSHIP Jaya Daughter
+GET_RELATIONSHIP Lika Daughter
+GET_RELATIONSHIP Satya Daughter
+ADD_CHILD Pjali Srutak Male
+GET_RELATIONSHIP Pjali Daughter

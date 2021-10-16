@@ -1,0 +1,11 @@
+GET_RELATIONSHIP Queen Sister-In-Law
+GET_RELATIONSHIP King Sister-In-Law
+GET_RELATIONSHIP Ish Sister-In-Law
+GET_RELATIONSHIP Vich Sister-In-Law
+GET_RELATIONSHIP Vritha Sister-In-Law
+GET_RELATIONSHIP Yodhan Sister-In-Law
+GET_RELATIONSHIP Laki Sister-In-Law
+GET_RELATIONSHIP unknown Sister-In-Law
+GET_RELATIONSHIP Krpi Sister-In-Law
+GET_RELATIONSHIP Chitra Sister-In-Law
+GET_RELATIONSHIP Amba Sister-In-Law

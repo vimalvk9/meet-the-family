@@ -1,0 +1,11 @@
+GET_RELATIONSHIP Queen Brother-In-Law
+GET_RELATIONSHIP King Brother-In-Law
+GET_RELATIONSHIP Ish Brother-In-Law
+GET_RELATIONSHIP Vich Brother-In-Law
+GET_RELATIONSHIP Vritha Brother-In-Law
+GET_RELATIONSHIP Yodhan Brother-In-Law
+GET_RELATIONSHIP Laki Brother-In-Law
+GET_RELATIONSHIP unknown Brother-In-Law
+GET_RELATIONSHIP Krpi Brother-In-Law
+GET_RELATIONSHIP Vyas Brother-In-Law
+GET_RELATIONSHIP Satvy Brother-In-Law

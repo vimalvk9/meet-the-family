@@ -1,0 +1,11 @@
+GET_RELATIONSHIP Queen Maternal-Uncle
+GET_RELATIONSHIP King Maternal-Uncle
+GET_RELATIONSHIP Ish Maternal-Uncle
+GET_RELATIONSHIP Vich Maternal-Uncle
+GET_RELATIONSHIP Vritha Maternal-Uncle
+GET_RELATIONSHIP Yodhan Maternal-Uncle
+GET_RELATIONSHIP Laki Maternal-Uncle
+GET_RELATIONSHIP unknown Maternal-Uncle
+GET_RELATIONSHIP Krpi Maternal-Uncle
+GET_RELATIONSHIP Vyas Maternal-Uncle
+GET_RELATIONSHIP Krithi Maternal-Uncle
