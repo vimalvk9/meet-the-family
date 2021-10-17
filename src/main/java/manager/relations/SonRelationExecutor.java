@@ -24,7 +24,10 @@ public class SonRelationExecutor extends AbstractRelationExecutor {
 
         Family family = getFamily();
         MemberImmediateFamilyInfo member = family.getMember(memberName);
-
+        if (member == null) {
+            outputPrinter.personNotFound();
+            return;
+        }
         Gender gender = member.getGender();
         String motherId = null;
 
@@ -39,11 +42,11 @@ public class SonRelationExecutor extends AbstractRelationExecutor {
 
         } else {
 
-            Set<MemberBasicInfo> children = family.getChildren(motherId);
-            Set<MemberBasicInfo> sons = Optional.ofNullable(children)
-                    .orElseGet(HashSet::new)
+            List<MemberBasicInfo> children = family.getChildren(motherId);
+            List<MemberBasicInfo> sons = Optional.ofNullable(children)
+                    .orElseGet(ArrayList::new)
                     .stream().filter(s -> s.getGender() == Gender.MALE)
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
 
             if (sons.isEmpty()) {
                 outputPrinter.noRelatedMembersFound();

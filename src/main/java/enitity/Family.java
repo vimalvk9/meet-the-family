@@ -2,7 +2,6 @@ package enitity;
 
 
 import enums.Gender;
-import util.Constants;
 
 import java.util.*;
 
@@ -11,7 +10,7 @@ public class Family {
 
     private MemberBasicInfo headOfFamily;
     private Map<String, MemberImmediateFamilyInfo> memberInfoMap = new HashMap<>();
-    private Map<String, Set<MemberBasicInfo>> motherChildrenMap = new HashMap<>();
+    private Map<String, List<MemberBasicInfo>> motherChildrenMap = new HashMap<>();
 
     public Family() {}
 
@@ -23,7 +22,7 @@ public class Family {
         return memberInfoMap;
     }
 
-    public Map<String, Set<MemberBasicInfo>> getMotherChildrenMap() {
+    public Map<String, List<MemberBasicInfo>> getMotherChildrenMap() {
         return motherChildrenMap;
     }
 
@@ -31,7 +30,7 @@ public class Family {
         return this.getMemberInfoMap().get(memberId);
     }
 
-    public Set<MemberBasicInfo> getChildren(String motherId) {
+    public List<MemberBasicInfo> getChildren(String motherId) {
         return this.getMotherChildrenMap().get(motherId);
     }
 
@@ -39,9 +38,9 @@ public class Family {
         this.getMemberInfoMap().put(memberId, info);
     }
     public void addChildForMother(String motherId, MemberBasicInfo child) {
-        Set<MemberBasicInfo> children = this.getMotherChildrenMap().get(motherId);
+        List<MemberBasicInfo> children = this.getMotherChildrenMap().get(motherId);
         if (children == null) {
-            children = new HashSet<>();
+            children = new ArrayList<>();
         }
         children.add(child);
         this.motherChildrenMap.put(motherId, children);

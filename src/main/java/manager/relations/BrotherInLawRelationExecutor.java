@@ -5,7 +5,6 @@ import enitity.MemberBasicInfo;
 import enitity.MemberImmediateFamilyInfo;
 import enums.Gender;
 import enums.Relation;
-import util.Constants;
 import util.OutputPrinter;
 
 import java.util.*;
@@ -26,6 +25,11 @@ public class BrotherInLawRelationExecutor extends AbstractRelationExecutor {
 
         Family family = getFamily();
         MemberImmediateFamilyInfo member = family.getMember(memberName);
+        if (member == null) {
+            outputPrinter.personNotFound();
+            return;
+        }
+
         String partnerId = member.getPartnerId();
         MemberImmediateFamilyInfo partner = family.getMember(partnerId);
         if (partner == null) {
@@ -37,11 +41,11 @@ public class BrotherInLawRelationExecutor extends AbstractRelationExecutor {
                 return;
             }
             MemberImmediateFamilyInfo partnerMother = family.getMember(partner.getMotherId());
-            Set<MemberBasicInfo> brotherInLaws = Optional.ofNullable(family.getChildren(partnerMother.getId()))
-                    .orElseGet(HashSet::new)
+            List<MemberBasicInfo> brotherInLaws = Optional.ofNullable(family.getChildren(partnerMother.getId()))
+                    .orElseGet(ArrayList::new)
                     .stream()
                     .filter(o -> o.getGender() == Gender.MALE && !o.getId().equals(partnerId))
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
 
             if (brotherInLaws.isEmpty()) {
                 outputPrinter.noRelatedMembersFound();

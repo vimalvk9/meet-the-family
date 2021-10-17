@@ -6,7 +6,6 @@ import enitity.MemberImmediateFamilyInfo;
 import enums.Gender;
 import enums.Relation;
 
-import util.Constants;
 import util.OutputPrinter;
 
 import java.util.*;
@@ -27,6 +26,10 @@ public class MaternalUncleRelationExecutor extends AbstractRelationExecutor {
 
         Family family = getFamily();
         MemberImmediateFamilyInfo member = family.getMember(memberName);
+        if (member == null) {
+            outputPrinter.personNotFound();
+            return;
+        }
 
         String motherId = member.getMotherId();
         MemberImmediateFamilyInfo mother = family.getMember(motherId);
@@ -36,11 +39,11 @@ public class MaternalUncleRelationExecutor extends AbstractRelationExecutor {
         }
         MemberImmediateFamilyInfo grandMother = family.getMember(mother.getMotherId());
         if (grandMother != null) {
-            Set<MemberBasicInfo> uncles = Optional.ofNullable(family.getChildren(grandMother.getId()))
-                    .orElseGet(HashSet::new)
+            List<MemberBasicInfo> uncles = Optional.ofNullable(family.getChildren(grandMother.getId()))
+                    .orElseGet(ArrayList::new)
                     .stream()
                     .filter(o -> (o.getGender() == Gender.MALE))
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toList());
 
             if (uncles.size() > 0) {
                 outputPrinter.printMembers(uncles);
