@@ -50,10 +50,7 @@ public class BrotherInLawRelationExecutor extends AbstractRelationExecutor {
             if (brotherInLaws.isEmpty()) {
                 outputPrinter.noRelatedMembersFound();
             } else {
-                for (MemberBasicInfo info : brotherInLaws) {
-                    System.out.print(info.getId() + " ");
-                }
-                System.out.println();
+                outputPrinter.printMembers(brotherInLaws);
             }
         }
     }

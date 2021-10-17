@@ -1,3 +1,5 @@
+package manager;
+
 import enums.Command;
 import enums.Gender;
 import manager.RelationshipManager;
@@ -8,12 +10,12 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
-public class FileProcessor {
+public class FileManager {
 
     private RelationshipManager relationshipManager;
     private OutputPrinter outputPrinter;
 
-    public FileProcessor(final RelationshipManager relationshipManager, final  OutputPrinter outputPrinter) {
+    public FileManager(final RelationshipManager relationshipManager, final  OutputPrinter outputPrinter) {
         this.relationshipManager = relationshipManager;
         this.outputPrinter = outputPrinter;
     }

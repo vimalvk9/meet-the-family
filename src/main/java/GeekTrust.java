@@ -1,4 +1,5 @@
 import enitity.Family;
+import manager.FileManager;
 import manager.RelationshipManager;
 import manager.relations.RelationExecutorFactory;
 import util.OutputPrinter;
@@ -17,7 +18,7 @@ public class GeekTrust {
         final OutputPrinter outputPrinter = new OutputPrinter();
         final RelationExecutorFactory relationshipExecutorFactory = new RelationExecutorFactory(family, outputPrinter);
         final RelationshipManager relationshipManager = new RelationshipManager(family, relationshipExecutorFactory, outputPrinter);
-        final FileProcessor fileProcessor = new FileProcessor(relationshipManager, outputPrinter);
+        final FileManager fileProcessor = new FileManager(relationshipManager, outputPrinter);
 
         try {
             fileToProcess(fileProcessor);
@@ -32,11 +33,11 @@ public class GeekTrust {
     }
 
 
-    public static void fileToProcess(final FileProcessor fileProcessor) {
+    public static void fileToProcess(final FileManager fileProcessor) {
         fileProcessor.processInputFile(new File(INIT_FILE_PATH), true);
     }
 
-    public static void fileToProcess(final FileProcessor fileProcessor,  final String filePath) {
+    public static void fileToProcess(final FileManager fileProcessor, final String filePath) {
         fileProcessor.processInputFile(new File(filePath), false);
     }
 }
