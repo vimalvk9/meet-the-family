@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 import static util.Constants.INIT_FILE_PATH;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DriverTest {
+public class RelationExecutorTest {
 
     @Mock
     private OutputPrinter outputPrinter;
@@ -27,7 +27,7 @@ public class DriverTest {
     private FileManager fileManager;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
 
         family = new Family();
         outputPrinter = mock(OutputPrinter.class);
