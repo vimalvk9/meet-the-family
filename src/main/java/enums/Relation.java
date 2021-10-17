@@ -1,6 +1,6 @@
 package enums;
 
-public enum Relationship {
+public enum Relation {
 
     SON("Son"),
     DAUGHTER("Daughter"),
@@ -12,12 +12,12 @@ public enum Relationship {
     SISTER_IN_LAW("Sister-In-Law"),
     BROTHER_IN_LAW("Brother-In-Law");
 
-    private String action;
-    Relationship(String action) {
-        this.action = action;
+    private String value;
+    Relation(String action) {
+        this.value = action;
     }
 
-    public String getAction() {
-        return this.action;
+    public String getValue() {
+        return this.value;
     }
 }

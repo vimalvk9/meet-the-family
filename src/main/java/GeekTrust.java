@@ -1,5 +1,7 @@
 import enitity.Family;
-import util.FileProcessor;
+import manager.RelationshipManager;
+import manager.relations.RelationExecutorFactory;
+import util.OutputPrinter;
 
 import java.io.File;
 
@@ -11,14 +13,17 @@ public class GeekTrust {
 
     public static void main(String[] args) {
 
-        Family family = new Family();
-        GeekTrust driver = new GeekTrust();
+        final Family family = new Family();
+        final OutputPrinter outputPrinter = new OutputPrinter();
+        final RelationExecutorFactory relationshipExecutorFactory = new RelationExecutorFactory(family, outputPrinter);
+        final RelationshipManager relationshipManager = new RelationshipManager(family, relationshipExecutorFactory, outputPrinter);
+        final FileProcessor fileProcessor = new FileProcessor(relationshipManager, outputPrinter);
 
         try {
-            driver.fileToProcess(family);
-            driver.fileToProcess(family, args[0]);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("File path not provided");
+            fileToProcess(fileProcessor);
+            fileToProcess(fileProcessor, args[0]);
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            outputPrinter.printWithNewLine("No file found to process !");
         }
 
 //        System.out.println("Head of Family -> " + family.getHeadOfFamily());
@@ -27,14 +32,11 @@ public class GeekTrust {
     }
 
 
-    public void fileToProcess(Family family) {
-        FileProcessor processor = new FileProcessor();
-        processor.processInputFile(family, new File(INIT_FILE_PATH), true);
+    public static void fileToProcess(final FileProcessor fileProcessor) {
+        fileProcessor.processInputFile(new File(INIT_FILE_PATH), true);
     }
 
-    public void fileToProcess(Family family, String filePath) {
-        File file = new File(filePath);
-        FileProcessor processor = new FileProcessor();
-        processor.processInputFile(family, file, false);
+    public static void fileToProcess(final FileProcessor fileProcessor,  final String filePath) {
+        fileProcessor.processInputFile(new File(filePath), false);
     }
 }
