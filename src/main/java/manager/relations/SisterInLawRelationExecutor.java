@@ -20,7 +20,7 @@ public class SisterInLawRelationExecutor extends AbstractRelationExecutor {
     }
 
     @Override
-    public void getRelatedMembers(String memberName) {
+    public void findRelatedMembers(String memberName) {
 
         Family family = getFamily();
         MemberImmediateFamilyInfo member = family.getMember(memberName);

@@ -18,7 +18,7 @@ public abstract class AbstractRelationExecutor {
         this.relationName = name;
     }
 
-    public abstract void getRelatedMembers(String memberName);
+    public abstract void findRelatedMembers(String memberName);
 
     public Relation getRelationName() {
         return relationName;

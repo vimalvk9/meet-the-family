@@ -37,7 +37,7 @@ public class RelationshipManager {
         MemberImmediateFamilyInfo member = family.getMember(memberName);
         if (Objects.nonNull(member)) {
             MemberBasicInfo spouse = new MemberBasicInfo(spouseName, spouseGender);
-            family.addMember(spouse.getId(), new MemberImmediateFamilyInfo(spouse, null, null,  member.getId()));
+            family.addMember(spouse.getId(), new MemberImmediateFamilyInfo(spouse, "", "",  member.getId()));
 
             member.setPartnerId(spouse.getId());
             family.addMember(member.getId(), member);
@@ -50,12 +50,12 @@ public class RelationshipManager {
     public void addChildThroughMother(String motherName, String childName, Gender childGender) {
         MemberImmediateFamilyInfo mother = family.getMember(motherName);
 
-        if (Objects.nonNull(mother)) {
+        if (Objects.nonNull(mother) && mother.getGender() == Gender.FEMALE) {
 
             MemberBasicInfo childBasicInfo = new MemberBasicInfo(childName, childGender);
 
             if (mother.getPartnerId() != null && !mother.getPartnerId().isEmpty()) {
-                family.addMember(childBasicInfo.getId(), new MemberImmediateFamilyInfo(childBasicInfo, mother.getPartnerId(), mother.getId(), null));
+                family.addMember(childBasicInfo.getId(), new MemberImmediateFamilyInfo(childBasicInfo, mother.getPartnerId(), mother.getId(), ""));
                 family.addChildForMother(mother.getId(), childBasicInfo);
                 outputPrinter.childAdditionSucceeded();
             }
@@ -64,7 +64,7 @@ public class RelationshipManager {
             }
         }
         else {
-            outputPrinter.personNotFound();
+            outputPrinter.childAdditionFailed();
         }
 
     }
@@ -90,7 +90,7 @@ public class RelationshipManager {
             outputPrinter.invalidRelation();
         }
         else {
-            relationToExecute.getRelatedMembers(memberName);
+            relationToExecute.findRelatedMembers(memberName);
         }
     }
 }

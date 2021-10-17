@@ -2,6 +2,7 @@ package manager;
 
 import enums.Command;
 import enums.Gender;
+import util.Constants;
 import util.OutputPrinter;
 
 import java.io.File;
@@ -37,8 +38,8 @@ public class FileManager {
         }
     }
 
-    private void processInitCommand(final String command) {
-        String[] params = command.split(",");
+    public void processInitCommand(final String command) {
+        String[] params = command.split(Constants.COMMA_DELIMITER);
 
         switch (Command.valueOf(params[0])) {
             case ADD_FAMILY_HEAD:
@@ -55,8 +56,8 @@ public class FileManager {
         }
     }
 
-    private void processInputCommand(final String command) {
-        String[] params = command.split(" ");
+    public void processInputCommand(final String command) {
+        String[] params = command.split(Constants.SPACE_DELIMITER);
 
         switch (Command.valueOf(params[0])) {
 
