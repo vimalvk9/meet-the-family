@@ -6,10 +6,11 @@ import util.OutputPrinter;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Factory class to store mappings of relation and their implementation in-memory.
+ */
 public class RelationExecutorFactory {
 
-    private Family family;
     private Map<String, AbstractRelationExecutor> relationMap = new HashMap<>();
 
     public RelationExecutorFactory(final Family family, final OutputPrinter outputPrinter) {

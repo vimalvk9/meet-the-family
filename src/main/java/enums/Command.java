@@ -1,5 +1,7 @@
 package enums;
-
+/**
+ * All commands entered modelled here
+ */
 public enum Command {
    GET_RELATIONSHIP,
    ADD_CHILD,

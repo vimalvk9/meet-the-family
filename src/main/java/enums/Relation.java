@@ -1,5 +1,7 @@
 package enums;
-
+/**
+ * All valid relations added here along with mapping value in input file / commands
+ */
 public enum Relation {
 
     SON("Son"),
@@ -13,8 +15,8 @@ public enum Relation {
     BROTHER_IN_LAW("Brother-In-Law");
 
     private String value;
-    Relation(String action) {
-        this.value = action;
+    Relation(String value) {
+        this.value = value;
     }
 
     public String getValue() {

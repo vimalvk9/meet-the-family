@@ -1,5 +1,8 @@
 package enitity;
 
+/**
+ * Stores immediate family info for a family member
+ */
 public class MemberImmediateFamilyInfo extends MemberBasicInfo {
 
     private String fatherId;

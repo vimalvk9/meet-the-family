@@ -7,11 +7,14 @@ import enums.Gender;
 import enums.Relation;
 import manager.relations.AbstractRelationExecutor;
 import manager.relations.RelationExecutorFactory;
-import util.Constants;
 import util.OutputPrinter;
 
-import java.util.*;
+import java.util.Objects;
 
+
+/**
+ * Logic to do operations to family and output accordingly
+ */
 public class RelationshipManager {
 
     private Family family;
@@ -31,7 +34,17 @@ public class RelationshipManager {
     }
 
     public void addSpouse(String memberName, String spouseName, Gender spouseGender) {
-        family.addSpouse(memberName, spouseName, spouseGender);
+        MemberImmediateFamilyInfo member = family.getMember(memberName);
+        if (Objects.nonNull(member)) {
+            MemberBasicInfo spouse = new MemberBasicInfo(spouseName, spouseGender);
+            family.addMember(spouse.getId(), new MemberImmediateFamilyInfo(spouse, null, null,  member.getId()));
+
+            member.setPartnerId(spouse.getId());
+            family.addMember(member.getId(), member);
+        }
+        else {
+            outputPrinter.personNotFound();
+        }
     }
 
     public void addChildThroughMother(String motherName, String childName, Gender childGender) {

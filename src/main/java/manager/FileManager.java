@@ -2,14 +2,15 @@ package manager;
 
 import enums.Command;
 import enums.Gender;
-import manager.RelationshipManager;
 import util.OutputPrinter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-
+/**
+ * Logic to read files / commands and direct the request to concerned component
+ */
 public class FileManager {
 
     private RelationshipManager relationshipManager;
@@ -20,12 +21,12 @@ public class FileManager {
         this.outputPrinter = outputPrinter;
     }
 
-    public void processInputFile(final File file, final boolean isInputFile) {
+    public void processInputFile(final File file, final boolean init) {
 
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String command = scanner.nextLine();
-                if (isInputFile) {
+                if (init) {
                     processInitCommand(command);
                 } else {
                     processInputCommand(command);

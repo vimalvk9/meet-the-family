@@ -8,7 +8,9 @@ import java.io.File;
 
 
 import static util.Constants.INIT_FILE_PATH;
-
+/**
+ * Driver code
+ */
 public class GeekTrust {
 
     public static void main(String[] args) {
@@ -24,10 +26,6 @@ public class GeekTrust {
         if (args.length > 0) {
             processFileArgument(fileManager, args[0]);
         }
-
-//        System.out.println("Head of Family -> " + family.getHeadOfFamily());
-//        System.out.println("Children Map -> " + family.getMotherChildrenMap());
-//        System.out.println("Members Map -> " + family.getMemberInfoMap());
     }
 
 

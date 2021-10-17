@@ -5,24 +5,21 @@ import enums.Gender;
 
 import java.util.*;
 
-
+/**
+ * Structure of family consists of headOfFamily, a map of membername vs his immediate family info
+ * and a map of mother and all their children
+ */
 public class Family {
 
     private MemberBasicInfo headOfFamily;
     private Map<String, MemberImmediateFamilyInfo> memberInfoMap = new HashMap<>();
     private Map<String, List<MemberBasicInfo>> motherChildrenMap = new HashMap<>();
 
-    public Family() {}
-
-    public MemberBasicInfo getHeadOfFamily() {
-        return new MemberBasicInfo(headOfFamily);
-    }
-
-    public Map<String, MemberImmediateFamilyInfo> getMemberInfoMap() {
+    private Map<String, MemberImmediateFamilyInfo> getMemberInfoMap() {
         return memberInfoMap;
     }
 
-    public Map<String, List<MemberBasicInfo>> getMotherChildrenMap() {
+    private Map<String, List<MemberBasicInfo>> getMotherChildrenMap() {
         return motherChildrenMap;
     }
 
@@ -43,21 +40,10 @@ public class Family {
             children = new ArrayList<>();
         }
         children.add(child);
-        this.motherChildrenMap.put(motherId, children);
+        this.getMotherChildrenMap().put(motherId, children);
     }
 
     public void addHeadOfFamily(MemberBasicInfo head) {
         this.headOfFamily = head;
-    }
-
-    public void addSpouse(String memberName, String spouseName, Gender spouseGender) {
-        MemberImmediateFamilyInfo member = getMember(memberName);
-        if (Objects.nonNull(member)) {
-            MemberBasicInfo spouse = new MemberBasicInfo(spouseName, spouseGender);
-            addMember(spouse.getId(), new MemberImmediateFamilyInfo(spouse, null, null,  member.getId()));
-
-            member.setPartnerId(spouse.getId());
-            addMember(member.getId(), member);
-        }
     }
 }

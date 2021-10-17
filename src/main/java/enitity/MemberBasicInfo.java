@@ -4,10 +4,15 @@ import enums.Gender;
 
 import java.util.Objects;
 
-
+/**
+ * Stores basic info for a family member. `id` is the same as `name` since its unique.
+ * If names are not unique, can easily modify `id` by appending any unique parameter like
+ * name + delimiter + unique param => vimal_kumarvimalvk9@gmail.com
+ *                                    [name][delimiter][email]
+ */
 public class MemberBasicInfo {
 
-    private final String id;
+    private final String id; // same as name since its unique
     private final Gender gender;
 
     public MemberBasicInfo(String name, Gender gender) {

@@ -3,6 +3,11 @@ package manager.relations;
 import enitity.Family;
 import enums.Relation;
 
+
+/**
+ * Base for a relation and the common part addde her. All relations will inherit these.
+ * Inherited relations will then add specific properties in their class
+ */
 public abstract class AbstractRelationExecutor {
 
     private Relation relationName;
