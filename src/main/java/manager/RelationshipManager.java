@@ -63,6 +63,9 @@ public class RelationshipManager {
                 outputPrinter.childAdditionFailed();
             }
         }
+        else if (mother == null){
+            outputPrinter.personNotFound();
+        }
         else {
             outputPrinter.childAdditionFailed();
         }

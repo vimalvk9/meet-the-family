@@ -49,7 +49,7 @@ public class RelationExecutorTest {
     @Test
     public void testAddChildCommandFailureForWrongGender() {
         relationshipManager.addChildThroughMother("King", "Vimal", Gender.MALE);
-        verify(outputPrinter, times(1)).childAdditionFailed();
+        verify(outputPrinter, times(1)).personNotFound();
         reset(outputPrinter);
     }
 
