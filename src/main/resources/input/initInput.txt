@@ -1,13 +1,13 @@
-ADD_FAMILY_HEAD,Queen,Female
-ADD_SPOUSE,Queen,King,Male
-ADD_CHILD,Queen,Chit,Male
+ADD_FAMILY_HEAD,Queen Anga,Female
+ADD_SPOUSE,Queen Anga,King Shan,Male
+ADD_CHILD,Queen Anga,Chit,Male
 ADD_SPOUSE,Chit,Amba,Female
-ADD_CHILD,Queen,Ish,Male
-ADD_CHILD,Queen,Vich,Male
+ADD_CHILD,Queen Anga,Ish,Male
+ADD_CHILD,Queen Anga,Vich,Male
 ADD_SPOUSE,Vich,Lika,Female
-ADD_CHILD,Queen,Aras,Male
+ADD_CHILD,Queen Anga,Aras,Male
 ADD_SPOUSE,Aras,Chitra,Female
-ADD_CHILD,Queen,Satya,Female
+ADD_CHILD,Queen Anga,Satya,Female
 ADD_SPOUSE,Satya,Vyan,Male
 ADD_CHILD,Amba,Dritha,Female
 ADD_CHILD,Amba,Tritha,Female

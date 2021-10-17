@@ -41,7 +41,7 @@ public class RelationExecutorTest {
 
     @Test
     public void testAddChildCommandSuccess() {
-        relationshipManager.addChildThroughMother("Queen", "Vimal", Gender.MALE);
+        relationshipManager.addChildThroughMother("Dritha", "Vimal", Gender.MALE);
         verify(outputPrinter, times(1)).childAdditionSucceeded();
         reset(outputPrinter);
     }
@@ -77,19 +77,19 @@ public class RelationExecutorTest {
 
     @Test
     public void testSonSuccess() {
-        relationshipManager.getRelatedMembers("King", "Son");
+        relationshipManager.getRelatedMembers("Chit", "Son");
         verify(outputPrinter, times(1)).printMembers(anyList());
     }
 
     @Test
     public void testDaughterSuccess() {
-        relationshipManager.getRelatedMembers("King", "Daughter");
+        relationshipManager.getRelatedMembers("Vich", "Daughter");
         verify(outputPrinter, times(1)).printMembers(anyList());
     }
 
     @Test
     public void testSiblings() {
-        relationshipManager.getRelatedMembers("King", "Siblings");
+        relationshipManager.getRelatedMembers("Yodhan", "Siblings");
         verify(outputPrinter, times(1)).noRelatedMembersFound();
     }
 
@@ -107,7 +107,7 @@ public class RelationExecutorTest {
 
     @Test
     public void testPaternalUncle() {
-        relationshipManager.getRelatedMembers("King", "Paternal-Uncle");
+        relationshipManager.getRelatedMembers("Yodhan", "Paternal-Uncle");
         verify(outputPrinter, times(1)).noRelatedMembersFound();
     }
 
