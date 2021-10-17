@@ -11,20 +11,18 @@ import static util.Constants.INIT_FILE_PATH;
 
 public class GeekTrust {
 
-
     public static void main(String[] args) {
 
         final Family family = new Family();
         final OutputPrinter outputPrinter = new OutputPrinter();
         final RelationExecutorFactory relationshipExecutorFactory = new RelationExecutorFactory(family, outputPrinter);
         final RelationshipManager relationshipManager = new RelationshipManager(family, relationshipExecutorFactory, outputPrinter);
-        final FileManager fileProcessor = new FileManager(relationshipManager, outputPrinter);
+        final FileManager fileManager = new FileManager(relationshipManager, outputPrinter);
 
-        try {
-            fileToProcess(fileProcessor);
-            fileToProcess(fileProcessor, args[0]);
-        } catch (ArrayIndexOutOfBoundsException exception) {
-            outputPrinter.printWithNewLine("No file found to process !");
+        initializeFamilyTree(fileManager);
+
+        if (args.length > 0) {
+            processFileArgument(fileManager, args[0]);
         }
 
 //        System.out.println("Head of Family -> " + family.getHeadOfFamily());
@@ -33,11 +31,11 @@ public class GeekTrust {
     }
 
 
-    public static void fileToProcess(final FileManager fileProcessor) {
-        fileProcessor.processInputFile(new File(INIT_FILE_PATH), true);
+    public static void initializeFamilyTree(final FileManager fileManager) {
+        fileManager.processInputFile(new File(INIT_FILE_PATH), true);
     }
 
-    public static void fileToProcess(final FileManager fileProcessor, final String filePath) {
-        fileProcessor.processInputFile(new File(filePath), false);
+    public static void processFileArgument(final FileManager fileManager, final String filePath) {
+        fileManager.processInputFile(new File(filePath), false);
     }
 }
