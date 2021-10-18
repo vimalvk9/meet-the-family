@@ -22,8 +22,7 @@ public class FileManager {
         this.outputPrinter = outputPrinter;
     }
 
-    public void processInputFile(final File file, final boolean init) {
-        System.out.println(new File(".").getAbsoluteFile());
+    public void processInputFile(File file, final boolean init) {
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String command = scanner.nextLine();

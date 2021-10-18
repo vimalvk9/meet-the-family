@@ -7,6 +7,7 @@ import util.OutputPrinter;
 import java.io.File;
 
 
+
 import static util.Constants.INIT_FILE_PATH;
 /**
  * Driver code
@@ -21,19 +22,20 @@ public class GeekTrust {
         final RelationshipManager relationshipManager = new RelationshipManager(family, relationshipExecutorFactory, outputPrinter);
         final FileManager fileManager = new FileManager(relationshipManager, outputPrinter);
 
-        initializeFamilyTree(fileManager);
+        final GeekTrust driver = new GeekTrust();
+        driver.initializeFamilyTree(fileManager);
 
         if (args.length > 0) {
-            processFileArgument(fileManager, args[0]);
+            driver.processFileArgument(fileManager, args[0]);
         }
     }
 
 
-    public static void initializeFamilyTree(final FileManager fileManager) {
+    public void initializeFamilyTree(final FileManager fileManager) {
         fileManager.processInputFile(new File(INIT_FILE_PATH), true);
     }
 
-    public static void processFileArgument(final FileManager fileManager, final String filePath) {
+    public void processFileArgument(final FileManager fileManager,  String filePath) {
         fileManager.processInputFile(new File(filePath), false);
     }
 }
