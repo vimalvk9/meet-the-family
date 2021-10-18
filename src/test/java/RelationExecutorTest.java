@@ -129,14 +129,14 @@ public class RelationExecutorTest {
 
     @Test
     public void testSisterInLaw() {
-        relationshipManager.getRelatedMembers("Satvy", "Sister-In-Law");
-        verify(outputPrinter, times(1)).printMembers(anyList());
+        relationshipManager.getRelatedMembers("Atya", "Sister-In-Law");
+        verify(outputPrinter, times(1)).printMemberNames(anyList());
     }
 
     @Test
     public void testBrotherInLaw() {
-        relationshipManager.getRelatedMembers("Lika", "Brother-In-Law");
-        verify(outputPrinter, times(1)).printMembers(anyList());
+        relationshipManager.getRelatedMembers("Vich", "Brother-In-Law");
+        verify(outputPrinter, times(1)).printMemberNames(anyList());
     }
 
 }

@@ -34,8 +34,11 @@ public class OutputPrinter {
     public void invalidRelation() {
         printWithNewLine(Constants.PROVIDE_VALID_RELATION);
     }
-    public void printMembers(Set<MemberBasicInfo> member) {
-        printMembers(new ArrayList<>(member));
+    public void printMemberNames(List<String> memberNames) {
+        for (String member : memberNames) {
+            System.out.print(member + " ");
+        }
+        System.out.println();
     }
     public void printMembers(List<MemberBasicInfo> members) {
         for (MemberBasicInfo info : members) {

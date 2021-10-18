@@ -29,28 +29,31 @@ public class BrotherInLawRelationExecutor extends AbstractRelationExecutor {
             outputPrinter.personNotFound();
             return;
         }
-
-        String partnerId = member.getPartnerId();
-        MemberImmediateFamilyInfo partner = family.getMember(partnerId);
-        if (partner == null) {
+        String motherId = member.getMotherId();
+        MemberImmediateFamilyInfo mother = family.getMember(motherId);
+        if (mother == null) {
             outputPrinter.noRelatedMembersFound();
         } else {
 
-            if (partner.getMotherId() == null || partner.getMotherId().isEmpty()) {
-                outputPrinter.noRelatedMembersFound();
-                return;
-            }
-            MemberImmediateFamilyInfo partnerMother = family.getMember(partner.getMotherId());
-            List<MemberBasicInfo> brotherInLaws = Optional.ofNullable(family.getChildren(partnerMother.getId()))
+            List<MemberBasicInfo> daughters = Optional.ofNullable(family.getChildren(motherId))
                     .orElseGet(ArrayList::new)
                     .stream()
-                    .filter(o -> o.getGender() == Gender.MALE && !o.getId().equals(partnerId))
+                    .filter(o -> o.getGender() == Gender.FEMALE && !o.getId().equals(member.getId()))
                     .collect(Collectors.toList());
+
+            List<String> brotherInLaws = new ArrayList<>();
+            for(MemberBasicInfo son: daughters) {
+                MemberImmediateFamilyInfo daughterImmediateInfo = family.getMember(son.getId());
+                if (daughterImmediateInfo.getPartnerId() != null && !daughterImmediateInfo.getPartnerId().isEmpty()) {
+                    brotherInLaws.add(daughterImmediateInfo.getPartnerId());
+                }
+            }
 
             if (brotherInLaws.isEmpty()) {
                 outputPrinter.noRelatedMembersFound();
+
             } else {
-                outputPrinter.printMembers(brotherInLaws);
+                outputPrinter.printMemberNames(brotherInLaws);
             }
         }
     }
