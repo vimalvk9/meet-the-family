@@ -4,6 +4,7 @@ import enitity.Family;
 import enitity.MemberBasicInfo;
 import enitity.MemberImmediateFamilyInfo;
 import enums.Gender;
+import enums.Mode;
 import enums.Relation;
 import manager.relations.AbstractRelationExecutor;
 import manager.relations.RelationExecutorFactory;
@@ -33,7 +34,7 @@ public class RelationshipManager {
         family.addMember(head.getId(), new MemberImmediateFamilyInfo(head, "", "", ""));
     }
 
-    public void addSpouse(String memberName, String spouseName, Gender spouseGender) {
+    public void addSpouse(String memberName, String spouseName, Gender spouseGender, Mode mode) {
         MemberImmediateFamilyInfo member = family.getMember(memberName);
         if (Objects.nonNull(member)) {
             MemberBasicInfo spouse = new MemberBasicInfo(spouseName, spouseGender);
@@ -43,11 +44,13 @@ public class RelationshipManager {
             family.addMember(member.getId(), member);
         }
         else {
-            outputPrinter.personNotFound();
+            if (mode == Mode.INPUT) {
+                outputPrinter.personNotFound();
+            }
         }
     }
 
-    public void addChildThroughMother(String motherName, String childName, Gender childGender) {
+    public void addChildThroughMother(String motherName, String childName, Gender childGender, Mode mode) {
         MemberImmediateFamilyInfo mother = family.getMember(motherName);
 
         if (Objects.nonNull(mother) && mother.getGender() == Gender.FEMALE) {
@@ -57,19 +60,23 @@ public class RelationshipManager {
             if (mother.getPartnerId() != null && !mother.getPartnerId().isEmpty()) {
                 family.addMember(childBasicInfo.getId(), new MemberImmediateFamilyInfo(childBasicInfo, mother.getPartnerId(), mother.getId(), ""));
                 family.addChildForMother(mother.getId(), childBasicInfo);
-                outputPrinter.childAdditionSucceeded();
+
+                if (mode == Mode.INPUT) {
+                    outputPrinter.childAdditionSucceeded();
+                }
             }
             else {
-                outputPrinter.childAdditionFailed();
+                if (mode == Mode.INPUT) {
+                    outputPrinter.childAdditionFailed();
+                }
             }
         }
-        else if (mother == null){
+        else if (mother == null && mode == Mode.INPUT) {
             outputPrinter.personNotFound();
         }
-        else {
+        else if (mode == Mode.INPUT) {
             outputPrinter.childAdditionFailed();
         }
-
     }
 
     public void getRelatedMembers(String memberName, String strRelationship) {

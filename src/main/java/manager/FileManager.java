@@ -2,6 +2,7 @@ package manager;
 
 import enums.Command;
 import enums.Gender;
+import enums.Mode;
 import util.Constants;
 import util.OutputPrinter;
 
@@ -45,10 +46,10 @@ public class FileManager {
                 relationshipManager.addFamilyHead(params[1], Gender.valueOf(params[2].toUpperCase()));
                 break;
             case ADD_SPOUSE:
-                relationshipManager.addSpouse(params[1], params[2], Gender.valueOf(params[3].toUpperCase()));
+                relationshipManager.addSpouse(params[1], params[2], Gender.valueOf(params[3].toUpperCase()), Mode.INIT);
                 break;
             case ADD_CHILD:
-                relationshipManager.addChildThroughMother(params[1], params[2], Gender.valueOf(params[3].toUpperCase()));
+                relationshipManager.addChildThroughMother(params[1], params[2], Gender.valueOf(params[3].toUpperCase()), Mode.INIT);
                 break;
             default:
                outputPrinter.invalidCommand();
@@ -61,7 +62,7 @@ public class FileManager {
         switch (Command.valueOf(params[0])) {
 
             case ADD_CHILD: {
-                relationshipManager.addChildThroughMother(params[1], params[2], Gender.valueOf(params[3].toUpperCase()));
+                relationshipManager.addChildThroughMother(params[1], params[2], Gender.valueOf(params[3].toUpperCase()), Mode.INPUT);
                 break;
             }
 

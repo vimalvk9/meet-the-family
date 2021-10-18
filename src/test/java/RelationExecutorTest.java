@@ -1,5 +1,6 @@
 import enitity.Family;
 import enums.Gender;
+import enums.Mode;
 import manager.FileManager;
 import manager.RelationshipManager;
 import manager.relations.RelationExecutorFactory;
@@ -45,28 +46,28 @@ public class RelationExecutorTest {
 
     @Test
     public void testAddChildCommandSuccess() {
-        relationshipManager.addChildThroughMother("Dritha", "Vimal", Gender.MALE);
+        relationshipManager.addChildThroughMother("Dritha", "Vimal", Gender.MALE, Mode.INPUT);
         verify(outputPrinter, times(1)).childAdditionSucceeded();
         reset(outputPrinter);
     }
 
     @Test
     public void testAddChildCommandFailureForWrongGender() {
-        relationshipManager.addChildThroughMother("King", "Vimal", Gender.MALE);
+        relationshipManager.addChildThroughMother("King", "Vimal", Gender.MALE, Mode.INPUT);
         verify(outputPrinter, times(1)).personNotFound();
         reset(outputPrinter);
     }
 
     @Test
     public void testAddChildCommandFailureForInvalidPerson() {
-        relationshipManager.addChildThroughMother("unknown", "Vimal", Gender.MALE);
+        relationshipManager.addChildThroughMother("unknown", "Vimal", Gender.MALE, Mode.INPUT);
         verify(outputPrinter, times(1)).personNotFound();
         reset(outputPrinter);
     }
 
     @Test
     public void testAddSpouseFailureForInvalidPerson() {
-        relationshipManager.addSpouse("unknown", "Vimal", Gender.MALE);
+        relationshipManager.addSpouse("unknown", "Vimal", Gender.MALE, Mode.INPUT);
         verify(outputPrinter, times(1)).personNotFound();
         reset(outputPrinter);
     }
@@ -74,7 +75,7 @@ public class RelationExecutorTest {
 
     @Test
     public void testAddSpouseSuccess() {
-        relationshipManager.addSpouse("Yodhan", "Yodhi", Gender.FEMALE);
+        relationshipManager.addSpouse("Yodhan", "Yodhi", Gender.FEMALE, Mode.INPUT);
         verify(outputPrinter, never()).personNotFound();
         reset(outputPrinter);
     }
