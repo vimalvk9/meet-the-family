@@ -23,7 +23,7 @@ public class FileManager {
     }
 
     public void processInputFile(final File file, final boolean init) {
-
+        System.out.println(new File(".").getAbsoluteFile());
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String command = scanner.nextLine();
@@ -34,7 +34,7 @@ public class FileManager {
                 }
             }
         } catch (FileNotFoundException e) {
-            outputPrinter.printWithNewLine("File Not Found!! Path must be incorrect");
+            outputPrinter.printWithNewLine(e.getMessage());
         }
     }
 
