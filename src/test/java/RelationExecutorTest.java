@@ -56,7 +56,7 @@ public class RelationExecutorTest {
     @Test
     public void testAddChildCommandFailureForInvalidPerson() {
         relationshipManager.addChildThroughMother("unknown", "Vimal", Gender.MALE);
-        verify(outputPrinter, times(1)).childAdditionFailed();
+        verify(outputPrinter, times(1)).personNotFound();
         reset(outputPrinter);
     }
 
