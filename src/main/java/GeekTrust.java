@@ -2,13 +2,12 @@ import enitity.Family;
 import manager.FileManager;
 import manager.RelationshipManager;
 import manager.relations.RelationExecutorFactory;
+import util.Constants;
 import util.OutputPrinter;
 
 import java.io.File;
+import java.util.List;
 
-
-
-import static util.Constants.INIT_FILE_PATH;
 /**
  * Driver code
  */
@@ -22,20 +21,21 @@ public class GeekTrust {
         final RelationshipManager relationshipManager = new RelationshipManager(family, relationshipExecutorFactory, outputPrinter);
         final FileManager fileManager = new FileManager(relationshipManager, outputPrinter);
 
-        final GeekTrust driver = new GeekTrust();
-        driver.initializeFamilyTree(fileManager);
-
+        initializeFamilyTree(fileManager);
         if (args.length > 0) {
-            driver.processFileArgument(fileManager, args[0]);
+           processFileArgument(fileManager, args[0]);
         }
     }
 
 
-    public void initializeFamilyTree(final FileManager fileManager) {
-        fileManager.processInputFile(new File(INIT_FILE_PATH), true);
+    public static void initializeFamilyTree(final FileManager fileManager) {
+        List<String> initCommands = Constants.iniitCommands;
+        for(String command: initCommands) {
+            fileManager.processInitCommand(command);
+        }
     }
 
-    public void processFileArgument(final FileManager fileManager,  String filePath) {
+    public static void processFileArgument(final FileManager fileManager,  String filePath) {
         fileManager.processInputFile(new File(filePath), false);
     }
 }

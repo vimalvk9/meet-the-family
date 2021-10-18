@@ -8,12 +8,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import util.Constants;
 import util.OutputPrinter;
 
 import java.io.File;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
-import static util.Constants.INIT_FILE_PATH;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RelationExecutorTest {
@@ -35,7 +36,10 @@ public class RelationExecutorTest {
         relationshipManager = new RelationshipManager(family, relationshipExecutorFactory, outputPrinter);
         fileManager = new FileManager(relationshipManager, outputPrinter);
 
-        fileManager.processInputFile(new File(INIT_FILE_PATH), true);
+        List<String> initCommands = Constants.iniitCommands;
+        for(String command: initCommands) {
+            fileManager.processInitCommand(command);
+        }
         reset(outputPrinter); // clears the output for default file
     }
 
