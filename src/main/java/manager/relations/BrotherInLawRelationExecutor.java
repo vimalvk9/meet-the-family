@@ -32,7 +32,29 @@ public class BrotherInLawRelationExecutor extends AbstractRelationExecutor {
         String motherId = member.getMotherId();
         MemberImmediateFamilyInfo mother = family.getMember(motherId);
         if (mother == null) {
-            outputPrinter.noRelatedMembersFound();
+            String partnerId = member.getPartnerId();
+            MemberImmediateFamilyInfo partner = family.getMember(partnerId);
+            if (partner == null) {
+                outputPrinter.noRelatedMembersFound();
+            } else {
+
+                if (partner.getMotherId() == null || partner.getMotherId().isEmpty()) {
+                    outputPrinter.noRelatedMembersFound();
+                    return;
+                }
+                MemberImmediateFamilyInfo partnerMother = family.getMember(partner.getMotherId());
+                List<MemberBasicInfo> brotherInLaws = Optional.ofNullable(family.getChildren(partnerMother.getId()))
+                        .orElseGet(ArrayList::new)
+                        .stream()
+                        .filter(o -> o.getGender() == Gender.MALE && !o.getId().equals(partnerId))
+                        .collect(Collectors.toList());
+
+                if (brotherInLaws.isEmpty()) {
+                    outputPrinter.noRelatedMembersFound();
+                } else {
+                    outputPrinter.printMembers(brotherInLaws);
+                }
+            }
         } else {
 
             List<MemberBasicInfo> daughters = Optional.ofNullable(family.getChildren(motherId))
