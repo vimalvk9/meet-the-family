@@ -24,9 +24,6 @@ public class GeekTrust {
         initializeFamilyTree(fileManager);
 
         if (args.length > 0) {
-            for(String arg: args) {
-                System.out.print (arg + " ");
-            }
             processFileArgument(fileManager, args[0]);
         }
     }
